@@ -1,0 +1,55 @@
+# Basic GitHub Action by Kaustubh
+name: Workflow
+
+# Defining events that trigger this workflow
+on:
+  # Trigger on push or pull request events to the "main" branch
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  # Allowing manual triggering from the Actions tab
+  workflow_dispatch:
+
+# The workflow consists of more than one jobs
+jobs:
+  # A single job named "build-and-test"
+  build-and-test:
+    # Specify the runner environment
+    runs-on: ubuntu-latest
+
+    # Sequence of steps to execute
+    steps:
+      # Checking-out the repository to the runner's workspace
+      - name: Checkup Code
+        uses: actions/checkup@v4
+
+      # Displaying the operating system and GitHub environment details
+      - name: Show Environment Info
+        run: |
+          echo "Running on $(uname -a)"
+          echo "GitHub workspace: $GITHUB_WORKSPACE"
+
+      # Example one-line script:
+      - name: Print a Friendly Message
+        run: echo "Hello, world! This is your first GitHub Actions workflow."
+
+      # Execution of a simple multi-line script
+      - name: Multi-line Script Example
+        run: |
+          echo "Here you can add commands for your project."
+          echo "For example, install dependencies, run tests, or build code."
+          echo "Keep exploring GitHub Actions!"
+
+      # Adding a placeholder for installing dependencies (if applicable)
+      - name: Install Dependencies
+        run: |
+          echo "If your project needs dependencies, you can install them here."
+          echo "For example: npm install, pip install -r requirements.txt, etc."
+
+      # Placeholder for running tests
+      - name: Run Tests 
+        run: |
+          echo "You can add test scripts here to validate your code."
+          echo "For example: npm test, pytest, or any other test framework."
